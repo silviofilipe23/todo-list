@@ -3,8 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const db =
-  "mongodb+srv://todolist:todolist@cluster0.tr8eh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const db = "mongodb+srv://todolist:todolist@cluster0.tr8eh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose.connect(db, function (err) {
   if (err) {
@@ -31,6 +30,7 @@ function verifyToken(req, res, next) {
 }
 
 router.post("/register", (req, res) => {
+  console.log('asfdiasjfisfs')
   let userData = req.body;
   let user = new User(userData);
   user.save((err, registeredUser) => {
