@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 const path = require('path');
 
-const api = require('./routes/api');
+const login = require('./routes/login');
+const events = require('./routes/events');
 const port = 3000;
 
 const app = express();
@@ -12,7 +13,8 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(bodyParser.json()); 
 
-app.use('/api', api);
+app.use('/api/login', login);
+app.use('/api/events', events);
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'dist/index.html'));

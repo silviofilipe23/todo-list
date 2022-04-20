@@ -29,22 +29,7 @@ function verifyToken(req, res, next) {
   next();
 }
 
-router.post("/register", (req, res) => {
-  console.log('asfdiasjfisfs')
-  let userData = req.body;
-  let user = new User(userData);
-  user.save((err, registeredUser) => {
-    if (err) {
-      console.log(err);
-    } else {
-      let payload = { subject: registeredUser._id };
-      let token = jwt.sign(payload, "secretKey");
-      res.status(200).send({ token });
-    }
-  });
-});
-
-router.post("/login", (req, res) => {
+router.post("/", (req, res) => {
   let userData = req.body;
   User.findOne({ email: userData.email }, (err, user) => {
     if (err) {
@@ -62,5 +47,21 @@ router.post("/login", (req, res) => {
     }
   });
 });
+
+router.post("/register", (req, res) => {
+  let userData = req.body;
+  let user = new User(userData);
+  user.save((err, registeredUser) => {
+    if (err) {
+      console.log(err);
+    } else {
+      let payload = { subject: registeredUser._id };
+      let token = jwt.sign(payload, "secretKey");
+      res.status(200).send({ token });
+    }
+  });
+});
+
+
 
 module.exports = router;
