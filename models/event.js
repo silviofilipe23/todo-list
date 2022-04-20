@@ -19,9 +19,11 @@ const eventSchema = new Schema({
         type: Boolean, 
         default: false 
     },
-    user: {
-        type: String,
-        required: true
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
     }
   });
 
